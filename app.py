@@ -1,22 +1,23 @@
+import pandas as pd
 import streamlit as st
 
 from src.data_loader import fetch_stock_data
-from src.plotter import plot_stock_chart
+from src.db_manager import fetch_data, save_data_to_db
 
-st.title("📈 株価 & 信用取引データの可視化")
+st.title("📊 TiDB Serverless & Streamlit")
 
-stock_code = st.text_input("📌 銘柄コードを入力（例: 7203）", "7203")
-
+# データ取得ボタン
 if st.button("データ取得"):
-    df = fetch_stock_data(stock_code)
-    # データを確認
-    st.write("デバッグ: 取得データ", df.head())
-
-    if df is None or df.empty:
-        st.error("⚠️ データ取得に失敗しました。銘柄コードを確認してください。")
+    df = fetch_data()
+    if df:
+        st.dataframe(pd.DataFrame(df))
     else:
-        fig = plot_stock_chart(df, stock_code)
-        if fig is not None:
-            st.pyplot(fig)
-        else:
-            st.error("⚠️ グラフが作成できませんでした。")
+        st.warning("⚠️ データがありません。")
+
+# データ保存ボタン
+if st.button("データ保存"):
+    with st.spinner("データ保存中..."):
+        df = fetch_stock_data("4755")  # 株価データ取得
+        if df is not None:
+            save_data_to_db(df.to_records(index=False))
+            st.success("✅ データを TiDB に保存しました！")

@@ -1,0 +1,40 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env
+
+# Streamlit secrets
+.streamlit/secrets.toml
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# macOS system files
+.DS_Store
+
+# Logs and database files
+logs/
+db.sqlite3
+
+# Python-specific ignores
+*.swp
+*.swo
+*.bak
+
+# VSCode settings
+.vscode/
+.settings/
+
+# Ignore data files
+*.csv
+*.json
+*.log
+
+# Ignore compiled files
+*.so
+*.dll
+*.dylib

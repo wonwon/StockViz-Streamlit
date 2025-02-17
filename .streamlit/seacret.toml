@@ -1,6 +1,0 @@
-DB_HOST = "gateway01.ap-northeast-1.prod.aws.tidbcloud.com"
-DB_PORT = "4000"
-DB_USER = "23NSKjMcQYeXLp9.root"
-DB_PASSWORD = "XMWwfRZ9BN9z8Ov2"
-DB_DATABASE = "test"
-DB_SSL_CA = "/etc/ssl/cert.pem"
